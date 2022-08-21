@@ -1,0 +1,2 @@
+Dependencies for Project 'prog5_1', Target 'Target 1': (DO NOT MODIFY !)
+F (.\prog5_1.s)(0x5FF5326C)(--cpu ARM7TDMI -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips--pd "__UVISION_VERSION SETA 526"--list .\listings\prog5_1.lst --xref -o .\objects\prog5_1.o --depend .\objects\prog5_1.d)

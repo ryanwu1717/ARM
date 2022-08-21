@@ -1,0 +1,113 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 GLOBAL           Reset_Handler
+    2 00000000                 AREA             Reset, CODE, READONLY
+    3 00000000         Reset_Handler
+    4 00000000        0 
+                       Rcnt    RN               0           ; assign r0 to Rcnt
+                                                            
+    5 00000000        1 
+                       Ra      RN               1           ; assign r1 to Ra, 
+                                                            dividend
+    6 00000000        2 
+                       Rb      RN               2           ; assign r2 to Rb, 
+                                                            divisor
+    7 00000000        3 
+                       Rc      RN               3           ; assign r3 to Rc, 
+                                                            quotient
+    8 00000000         ENTRY
+    9 00000000 E3A01F8A        LDR              Ra, =552    ; test data for div
+                                                            idend
+   10 00000004 E3A020EA        LDR              Rb, =234    ; test data for div
+                                                            isor
+   11 00000008 E3A00001        MOV              Rcnt, #1    ; bit to control th
+                                                            e division
+   12 0000000C E3520102 
+                       Div1    CMP              Rb, #0x80000000 ; move Rb until
+                                                             greater than Ra
+   13 00000010 31520001        CMPCC            Rb, Ra
+   14 00000014 31A02082        LSLCC            Rb, Rb, #1
+   15 00000018 31A00080        LSLCC            Rcnt, Rcnt, #1
+   16 0000001C 3AFFFFFA        BCC              Div1
+   17 00000020         ;  
+   18 00000020 E3A03000        MOV              Rc, #0
+   19 00000024 E1510002 
+                       Div2    CMP              Ra, Rb      ; test for possible
+                                                             subtraction
+   20 00000028 20411002        SUBCS            Ra, Ra, Rb  ; subtract if OK
+   21 0000002C 20833000        ADDCS            Rc, Rc, Rcnt ; put relevant bit
+                                                             into result
+   22 00000030 E1B000A0        LSRS             Rcnt, Rcnt, #1 
+                                                            ; shift control bit
+                                                            
+   23 00000034 11A020A2        LSRNE            Rb, Rb, #1  ; halve unless fini
+                                                            shed
+   24 00000038 1AFFFFF9        BNE              Div2        ; divide result in 
+                                                            Rc remainder in Ra
+   25 0000003C EAFFFFFE 
+                       done    B                done
+   26 00000040                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\division.d -o.\objects\division.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5
+\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__UVISION_VERSION 
+SETA 526" --list=.\listings\division.lst division.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Div1 0000000C
+
+Symbol: Div1
+   Definitions
+      At line 12 in file division.s
+   Uses
+      At line 16 in file division.s
+Comment: Div1 used once
+Div2 00000024
+
+Symbol: Div2
+   Definitions
+      At line 19 in file division.s
+   Uses
+      At line 24 in file division.s
+Comment: Div2 used once
+ENTRY 00000000
+
+Symbol: ENTRY
+   Definitions
+      At line 8 in file division.s
+   Uses
+      None
+Comment: ENTRY unused
+Reset 00000000
+
+Symbol: Reset
+   Definitions
+      At line 2 in file division.s
+   Uses
+      None
+Comment: Reset unused
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 3 in file division.s
+   Uses
+      At line 1 in file division.s
+Comment: Reset_Handler used once
+done 0000003C
+
+Symbol: done
+   Definitions
+      At line 25 in file division.s
+   Uses
+      At line 25 in file division.s
+Comment: done used once
+6 symbols
+341 symbols in table

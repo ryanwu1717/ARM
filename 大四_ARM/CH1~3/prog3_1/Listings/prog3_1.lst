@@ -1,0 +1,60 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 GLOBAL           Reset_Handler
+    2 00000000                 AREA             Reset, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         Reset_Handler
+    6 00000000 E3A00011        MOV              r0,  #0x11  ; MOV (Move), load 
+                                                            initial value into 
+                                                            r0
+    7 00000004 E1A01080        LSL              r1,  r0,  #1 ; LSL (Logical Shi
+                                                            ft Left) , r0 shift
+                                                             left 1 bit into r1
+                                                            
+    8 00000008 E1A02081        LSL              r2,  r1,  #1 ; r1 shift left 1 
+                                                            bit into r2
+    9 0000000C EAFFFFFE 
+                       stop    B                stop        ; branch, stop prog
+                                                            ram
+   10 00000010                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\prog3_1.d -o.\objects\prog3_1.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\A
+RM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --pre
+define="__UVISION_VERSION SETA 526" --list=.\listings\prog3_1.lst prog3_1.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset 00000000
+
+Symbol: Reset
+   Definitions
+      At line 2 in file prog3_1.s
+   Uses
+      None
+Comment: Reset unused
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 5 in file prog3_1.s
+   Uses
+      At line 1 in file prog3_1.s
+Comment: Reset_Handler used once
+stop 0000000C
+
+Symbol: stop
+   Definitions
+      At line 9 in file prog3_1.s
+   Uses
+      At line 9 in file prog3_1.s
+Comment: stop used once
+3 symbols
+335 symbols in table

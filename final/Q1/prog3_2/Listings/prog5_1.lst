@@ -1,0 +1,77 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 GLOBAL           Reset_Handler
+    2 00000000                 AREA             Reset, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         Reset_Handler
+    5 00000000 E3A00101        MOV              r0,  #0x40000000
+    6 00000004 E3A07141        MOV              r7,  #0x40000010
+    7 00000008 E3A0A003        MOV              r10,  #3
+    8 0000000C E4901004        LDR              r1, [r0],#4 ;load halfword into
+                                                             r11
+    9 00000010 E4902004        LDR              r2, [r0],#4
+   10 00000014 E4903004        LDR              r3, [r0],#4
+   11 00000018 E4904004        LDR              r4, [r0],#4
+   12 0000001C         
+   13 0000001C         
+   14 0000001C E1A02C62        MOV              r2,r2,ROR 24
+   15 00000020 E1A02C62        MOV              r2,r2,ROR 24
+   16 00000024 E1A02C62        MOV              r2,r2,ROR 24
+   17 00000028         
+   18 00000028 E1A03C63        MOV              r3,r3,ROR 24
+   19 0000002C E1A03C63        MOV              r3,r3,ROR 24
+   20 00000030         
+   21 00000030 E1A04C64        MOV              r4,r4,ROR 24
+   22 00000034         
+   23 00000034         
+   24 00000034 E5871000        STR              r1, [r7]
+   25 00000038 E5872004        STR              r2, [r7,#4]
+   26 0000003C E5873008        STR              r3, [r7,#8]
+   27 00000040 E587400C        STR              r4, [r7,#12]
+   28 00000044         
+   29 00000044         
+   30 00000044         
+   31 00000044 EAFFFFFE 
+                       stop    B                stop        ; branch, stop prog
+                                                            ram
+   32 00000048                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\prog5_1.d -o.\objects\prog5_1.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\A
+RM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__UVISION_VERSION SE
+TA 526" --list=.\listings\prog5_1.lst prog5_1.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset 00000000
+
+Symbol: Reset
+   Definitions
+      At line 2 in file prog5_1.s
+   Uses
+      None
+Comment: Reset unused
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 4 in file prog5_1.s
+   Uses
+      At line 1 in file prog5_1.s
+Comment: Reset_Handler used once
+stop 00000044
+
+Symbol: stop
+   Definitions
+      At line 31 in file prog5_1.s
+   Uses
+      At line 31 in file prog5_1.s
+Comment: stop used once
+3 symbols
+334 symbols in table
